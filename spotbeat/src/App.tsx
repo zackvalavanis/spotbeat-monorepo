@@ -1,6 +1,7 @@
 import './App.css'
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
-import LandingPage from './screens/home'
+import LandingPage from './screens/Home/home'
+import { Header } from './screens/Header/Header'
 
 function App() {
 
@@ -8,6 +9,7 @@ function App() {
     {
       element: (
         <div>
+          <Header />
           <Outlet />
         </div>
       ),

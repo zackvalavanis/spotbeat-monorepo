@@ -22,29 +22,22 @@ export default function LandingPage() {
 
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center">
-      {/* Header / Logo */}
+    <div className="home-page-container">
+      <nav>
+        <ul className="flex space-x-4">
+          <li className="text-gray-700 font-semibold">Home</li>
+          <li className="text-gray-700 font-semibold">Features</li>
+          <li className="text-gray-700 font-semibold">Sign Up</li>
+        </ul>
+      </nav>
+      <form onSubmit={handleIndex}>
+        <input
+          value={city}
+          name='city'
+          onChange={(e) => setCity(e.target.value)} />
+        <button type='submit'>Lookup</button>
+      </form>
 
-      <header className="w-full flex justify-between items-center p-6 bg-white shadow-md">
-        <h1 className="text-2xl font-bold text-blue-600">SpotBeat</h1>
-        <nav>
-          <ul className="flex space-x-4">
-            <li className="text-gray-700 font-semibold">Home</li>
-            <li className="text-gray-700 font-semibold">Features</li>
-            <li className="text-gray-700 font-semibold">Sign Up</li>
-          </ul>
-        </nav>
-        <form onSubmit={handleIndex}>
-          <input
-            value={city}
-            name='city'
-            onChange={(e) => setCity(e.target.value)} />
-
-          <button type='submit'>Lookup</button>
-        </form>
-      </header>
-
-      {/* Hero Section */}
       <section className="flex flex-col items-center justify-center text-center mt-16 px-6">
         <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-6">
           Never Miss a Concert Again
@@ -76,7 +69,7 @@ export default function LandingPage() {
       <footer className="w-full bg-white mt-24 p-6 text-center text-gray-500">
         © 2025 SpotBeat. All rights reserved.
       </footer>
-    </div>
+    </div >
   );
 }
 

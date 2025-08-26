@@ -7,7 +7,7 @@ import authRoutes from './routes/authRoutes.ts';
 const app = express();
 const PORT = process.env.PORT || 8000;
 app.use(cors({
-  origin: 'http://localhost:5174', // your React frontend
+  origin: 'http://localhost:5173', // your React frontend
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
