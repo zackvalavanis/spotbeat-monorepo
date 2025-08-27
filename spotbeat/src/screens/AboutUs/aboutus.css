@@ -11,6 +11,15 @@
   /* add breathing room on top/bottom and sides */
   background-color: #f9f9f9;
   /* light neutral background for professional look */
+  opacity: 0;
+  /* start invisible */
+  transition: opacity 0.6s ease-in-out;
+  /* smooth fade */
+}
+
+.about-us-page.visible {
+  opacity: 1;
+  /* fade to fully visible */
 }
 
 /* Each information section */

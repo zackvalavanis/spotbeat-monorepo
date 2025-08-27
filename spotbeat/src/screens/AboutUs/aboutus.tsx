@@ -1,11 +1,18 @@
 import './aboutus.css'
 import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react';
 
 export function AboutUs() {
   const navigate = useNavigate()
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setVisible(true), 50); // trigger fade-in shortly after mount
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <div className='about-us-page'>
+    <div className={`about-us-page ${visible ? 'visible' : ''}`}>
       <section className='top-about-us-section'>
         <h2>
           Never Miss a Concert Again
@@ -14,7 +21,7 @@ export function AboutUs() {
           SpotBeat finds tickets before they sell out and notifies you instantly. Your front-row experience starts here.
         </p>
         <button
-          onClick={() => navigate('/')}
+          onClick={() => navigate('/home')}
         >
           Get Started
         </button>

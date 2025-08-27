@@ -23,7 +23,7 @@ export function LandingPage() {
     // Clear after animation + navigate
     setTimeout(() => {
       setRipples([])
-      navigate('/home')
+      navigate('/aboutus')
     }, 900)
   }
 
