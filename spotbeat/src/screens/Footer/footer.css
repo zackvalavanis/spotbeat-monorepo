@@ -10,8 +10,12 @@
 .login-logout-container-footer {
   display: flex;
   justify-content: center;
-  font-size: 5px;
-  gap: 20px;
+  align-items: center;
+  /* vertical alignment */
+  font-size: 16px;
+  /* reasonable size for both */
+  gap: 10px;
+  /* space between items */
   margin-top: 20px;
   cursor: pointer;
   transition: transform 0.2s ease, color 0.2s ease;
@@ -25,20 +29,10 @@
 .about-us-button-container {
   display: flex;
   justify-content: center;
+  margin-top: 15px;
 }
 
-.about-us-button {
-  border: none;
-  /* removes border */
-  outline: none;
-  /* removes focus outline */
-  background-color: #2563eb;
-  color: white;
-  cursor: pointer;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  transition: transform 0.2s ease, background-color 0.2s ease;
-}
+
 
 .about-us-button:hover {
   transform: scale(1.05);
@@ -50,4 +44,36 @@
   /* removes focus outline when clicked/tabbed */
   box-shadow: none;
   /* optional: remove any shadow */
+}
+
+.sign-up-button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-left: 10px;
+  /* space from Login */
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+.sign-up-button:hover {
+  color: #9333EA;
+}
+
+.login-logout-container-footer span,
+.login-logout-container-footer div {
+  display: inline-flex;
+  align-items: center;
+  font-weight: normal;
+}
+
+.login-logout-container-footer span.sign-up-button {
+  margin-left: 10px;
+}
+
+.login-logout-container-footer span.sign-up-button:hover {
+  color: #9333EA;
 }

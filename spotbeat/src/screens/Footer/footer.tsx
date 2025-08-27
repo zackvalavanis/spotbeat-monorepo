@@ -1,6 +1,7 @@
 import './footer.css'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Logout } from '../Auth/Logout'
 
 export function Footer() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -21,21 +22,22 @@ export function Footer() {
         <div>
           {isLoggedIn ? (
             <div className='login-logout-container-footer'>
-              <h1>Logout</h1>
-              <h1>Sign Up</h1>
+              <Logout />
             </div>
           ) : (
             <div className='login-logout-container-footer'>
-              <h1>Login</h1>
+              <span className='sign-up-button' onClick={() => navigate('/login')}>Login</span>
+              <span
+                className='sign-up-button'
+                onClick={() => navigate('/sign-up')}
+              >
+                Sign Up
+              </span>
             </div>
           )
           }
           <div className='about-us-button-container'>
-            <button
-              className='about-us-button'
-              onClick={() => navigate('/aboutus')}
-            >About us
-            </button>
+            <span className='sign-up-button' onClick={() => navigate('/aboutus')}>About Us</span>
           </div>
         </div>
       </footer>

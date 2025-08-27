@@ -5,6 +5,8 @@ import { Footer } from './screens/Footer/footer'
 import { AboutUs } from './screens/AboutUs/aboutus'
 import Home from './screens/Home/home';
 import { LandingPage } from './screens/LandingPage/landing-page'
+import { SignUp } from './screens/Auth/Sign-up'
+import { Login } from './screens/Auth/Login'
 
 function App() {
 
@@ -31,6 +33,14 @@ function App() {
         {
           path: '/aboutus',
           element: <AboutUs />
+        },
+        {
+          path: '/login',
+          element: <Login />
+        },
+        {
+          path: '/sign-up',
+          element: <SignUp />
         }
       ]
     }
