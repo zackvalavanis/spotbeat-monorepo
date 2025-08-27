@@ -38,9 +38,12 @@
 
 /* SpotBeat text container (centered) */
 .header-title-container {
-  flex: 1;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 /* SpotBeat text */

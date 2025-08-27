@@ -1,6 +1,10 @@
 import './Header.css'
+import { useNavigate } from 'react-router-dom'
 
 export function Header() {
+  const navigate = useNavigate()
+
+
   return (
     <div className="header-container">
       <div className="header-image-container">
@@ -8,7 +12,12 @@ export function Header() {
       </div>
 
       <div className="header-title-container">
-        <h1>SpotBeat</h1>
+        <button
+          onClick={() => navigate('/')}
+          style={{ backgroundColor: '#fcfcfc', border: 'none', outline: 'none', cursor: 'pointer' }}
+        >
+          <h1>SpotBeat</h1>
+        </button>
       </div>
     </div>
   )

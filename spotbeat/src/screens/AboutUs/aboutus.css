@@ -1,0 +1,81 @@
+.about-us-page {
+  flex: 1;
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 5rem;
+  /* reduced from 200px for better spacing */
+  padding: 4rem 2rem;
+  /* add breathing room on top/bottom and sides */
+  background-color: #f9f9f9;
+  /* light neutral background for professional look */
+}
+
+/* Each information section */
+.information-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* proper left alignment */
+  width: 45%;
+  max-width: 800px;
+  /* prevents it from getting too wide on large screens */
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  /* subtle card shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.top-about-us-section button {
+  background-color: #2563eb;
+}
+
+.top-about-us-section button:hover {
+  transform: scale(1.05);
+  background-color: #9333EA;
+}
+
+/* Optional hover effect for a modern feel */
+.information-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Headings inside information section */
+.information-section h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #2563eb;
+  /* brand accent color */
+}
+
+/* Paragraphs inside information section */
+.information-section p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333333;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .information-section {
+    width: 70%;
+  }
+}
+
+@media (max-width: 600px) {
+  .about-us-page {
+    gap: 3rem;
+    padding: 2rem 1rem;
+  }
+
+  .information-section {
+    width: 90%;
+    padding: 1.5rem;
+  }
+}

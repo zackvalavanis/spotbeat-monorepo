@@ -4,20 +4,28 @@ services:
     container_name: spotbeat-backend
     ports:
       - "8000:8000"
+    volumes:
+      - ./spotbeat-backend:/app
+      - /app/node_modules
     env_file:
       - ./.env
     depends_on:
       - db
+    command: npm run dev
 
   frontend:
     build: ./spotbeat
     container_name: spotbeat-frontend
     ports:
-      - "5174:80" # frontend served via nginx
+      - "5173:5173"
+    volumes:
+      - ./spotbeat:/app
+      - /app/node_modules
     depends_on:
       - backend
     env_file:
       - ./.env
+    command: npm run dev
 
   db:
     image: postgres:15
