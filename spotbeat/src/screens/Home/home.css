@@ -4,31 +4,62 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+
+  opacity: 0;
+  /* start invisible */
+  transform: translateY(20px);
+  /* slide up effect */
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  /* smooth fade/slide */
 }
 
+.home-page-container.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Lookup button */
 .button-lookup {
   background-color: #2563eb;
   cursor: pointer;
-  transition: transform 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, opacity 0.3s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  /* subtle shadow */
   border: none;
-  /* optional: remove default button border */
   color: white;
-  /* make text visible */
   border-radius: 20px;
   width: 10rem;
   height: 60px;
 }
 
+/* Hover effect */
 .button-lookup:hover {
   background-color: #9333EA;
   transform: scale(1.05);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-  /* slightly larger shadow on hover */
 }
 
+/* Active / click fade effect */
+.button-lookup:active {
+  opacity: 0.6;
+  /* quick fade */
+  transform: scale(0.95);
+  /* subtle press animation */
+}
+
+/* Input field */
 .input-home-page {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  border: 1px solid grey,
+  border: 1px solid grey;
+  border-radius: 20px;
+  height: 60px;
+  width: 50rem;
+  padding: 0 1rem;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.input-home-page:focus {
+  outline: none;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  border-color: #2563eb;
 }

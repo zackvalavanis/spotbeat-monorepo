@@ -1,9 +1,15 @@
-
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import './home.css'
 
-export default function LandingPage() {
+export default function Home() {
   const [city, setCity] = useState<string>('')
+  const [visible, setVisible] = useState(false) // for fade-in
+
+  // Fade in on mount
+  useEffect(() => {
+    const timer = setTimeout(() => setVisible(true), 50) // trigger fade in
+    return () => clearTimeout(timer)
+  }, [])
 
   const handleIndex = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -17,29 +23,24 @@ export default function LandingPage() {
     }
   }
 
-  // useEffect(() => {
-  //   handleIndex()
-  // }, [])
-
-
   return (
-    <div className="home-page-container">
+    <div className={`home-page-container ${visible ? 'show' : ''}`}>
       <form onSubmit={handleIndex}>
         <input
-          style={{ height: '60px', width: '50rem', borderRadius: '20px', backgroundColor: 'white', color: 'black' }}
           className="input-home-page"
+          style={{ height: '60px', width: '50rem', borderRadius: '20px', backgroundColor: 'white', color: 'black' }}
           placeholder="Search for events in your city"
           value={city}
           name='city'
           onChange={(e) => setCity(e.target.value)} />
         <button
           type='submit'
-          style={{ borderRadius: '20px', marginLeft: '20px', width: '10rem', height: '60px' }}
           className='button-lookup'
-        >Lookup
+          style={{ borderRadius: '20px', marginLeft: '20px', width: '10rem', height: '60px' }}
+        >
+          Lookup
         </button>
       </form>
-    </div >
+    </div>
   );
 }
-

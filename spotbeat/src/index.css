@@ -7,7 +7,8 @@
   /* Color scheme */
   color-scheme: light dark;
   color: black;
-  background-color: white;
+  background-color: #f9f9f9;
+  ;
 
   /* Font rendering */
   font-synthesis: none;
