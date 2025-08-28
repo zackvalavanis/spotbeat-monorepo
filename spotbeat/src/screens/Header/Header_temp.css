@@ -1,0 +1,83 @@
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  /* Logo left, text center */
+  align-items: center;
+  width: 90%;
+  height: 8rem;
+  background-color: #fcfcfc;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  margin: 0 auto;
+  border-radius: 400px;
+  padding: 0 2rem;
+  /* space on left/right */
+}
+
+/* Logo container */
+.header-image-container {
+  display: flex;
+  align-items: center;
+}
+
+/* Logo image */
+.header-image-container img {
+  height: 50px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.header-image-container img:hover {
+  transform: scale(1.05);
+  filter: brightness(1.2);
+  /* slight brighten on hover */
+}
+
+/* SpotBeat text container (centered) */
+.header-title-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* SpotBeat text */
+.header-container h1 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 700;
+  color: #2563eb;
+  margin: 0;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.header-container h1:hover {
+  transform: scale(1.05);
+  color: #9333EA;
+}
+
+.location-modal-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.button-open-location-modal {
+  background-color: #2563eb;
+  height: 60px;
+  width: 125px;
+  margin-right: 20px;
+  border-radius: 200px;
+}
+
+.button-open-location-modal:hover {
+  background-color: #9333EA;
+  transform: scale(1.05);
+}
