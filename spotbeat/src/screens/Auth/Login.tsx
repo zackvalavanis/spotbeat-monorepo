@@ -1,7 +1,9 @@
 import './Login.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { supabase } from '../../supabaseClient'
 import { useNavigate } from 'react-router-dom'
+import type { User } from '@supabase/supabase-js';
+
 
 
 
@@ -9,7 +11,7 @@ export function Login() {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
-  const [user, setUser] = useState('')
+  const [user, setUser] = useState<User | null>(null)
 
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -39,8 +41,7 @@ export function Login() {
       }
 
       if (userData?.user) {
-        console.log('User logged in:', userData.user);
-        setUser(userData.user.email ?? '');
+        setUser(userData?.user);
       } else {
         setErrorMessage('No user returned');
       }
@@ -51,8 +52,11 @@ export function Login() {
       console.error(err)
       console.log(errorMessage)
     }
-
   }
+
+  useEffect(() => {
+    console.log('Updated user:', user);
+  }, [user]);
 
 
 

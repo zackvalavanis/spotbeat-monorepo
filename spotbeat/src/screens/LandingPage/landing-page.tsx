@@ -2,11 +2,17 @@ import './landing-page.css'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
+
+
 type Ripple = { x: number; y: number; id: number }
 
 export function LandingPage() {
   const navigate = useNavigate()
   const [ripples, setRipples] = useState<Ripple[]>([])
+
+
+
+
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = (e.currentTarget as HTMLDivElement).getBoundingClientRect()

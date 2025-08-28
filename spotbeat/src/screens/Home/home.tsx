@@ -1,15 +1,21 @@
 import { useState, useEffect } from "react"
 import './home.css'
 
+
+
 export default function Home() {
   const [city, setCity] = useState<string>('')
   const [visible, setVisible] = useState(false) // for fade-in
+
+
 
   // Fade in on mount
   useEffect(() => {
     const timer = setTimeout(() => setVisible(true), 50) // trigger fade in
     return () => clearTimeout(timer)
   }, [])
+
+
 
   const handleIndex = async (e: React.FormEvent) => {
     e.preventDefault();

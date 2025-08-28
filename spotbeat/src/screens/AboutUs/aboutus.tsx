@@ -1,19 +1,32 @@
 import './aboutus.css'
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react';
+import { supabase } from '../../supabaseClient'
+import type { User } from '@supabase/supabase-js';
 
 export function AboutUs() {
   const navigate = useNavigate()
   const [visible, setVisible] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setVisible(true), 50); // trigger fade-in shortly after mount
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    const fetchUser = async () => {
+      const { data } = await supabase.auth.getUser();
+      setUser(data.user || null);
+      console.log('Logged-in user:', data.user);
+    };
+    fetchUser();
+  }, []);
+
   return (
     <div className={`about-us-page ${visible ? 'visible' : ''}`}>
       <section className='top-about-us-section'>
+        {user && <p>Logged in: {user.email}</p>}
         <h2>
           Never Miss a Concert Again
         </h2>
