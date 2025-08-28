@@ -1,7 +1,6 @@
 import './footer.css'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Logout } from '../Auth/Logout'
 import { supabase } from '../../supabaseClient'
 import type { User } from '@supabase/supabase-js';
 
