@@ -1,20 +1,16 @@
 FROM node:20-alpine
 
-# Set working directory
 WORKDIR /app
 
-# Copy package.json and lock file
-COPY package.json pnpm-lock.yaml ./
+# Copy package files first
+COPY package.json package-lock.json* ./
 
-# Install pnpm and dependencies
-RUN npm install -g pnpm
-RUN pnpm install
+# Install dependencies
+RUN npm install
 
-# Copy all project files
+# Copy the rest of the project
 COPY . .
 
-# Expose port
 EXPOSE 5173
 
-# Run the dev server
-CMD ["pnpm", "run", "dev"]
+CMD ["npm", "run", "dev", "--", "--host"]

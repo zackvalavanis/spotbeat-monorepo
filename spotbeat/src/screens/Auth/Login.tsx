@@ -9,6 +9,7 @@ export function Login() {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
+  const [user, setUser] = useState('')
 
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -37,7 +38,12 @@ export function Login() {
         return
       }
 
-      console.log('User logged in:', userData.user)
+      if (userData?.user) {
+        console.log('User logged in:', userData.user);
+        setUser(userData.user.email ?? '');
+      } else {
+        setErrorMessage('No user returned');
+      }
       navigate('/')
     } catch (err) {
       setLoading(false)
@@ -45,6 +51,7 @@ export function Login() {
       console.error(err)
       console.log(errorMessage)
     }
+
   }
 
 
