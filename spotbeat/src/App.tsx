@@ -1,12 +1,13 @@
 import './App.css'
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
-import { Header } from './screens/Header/Header'
-import { Footer } from './screens/Footer/footer'
-import { AboutUs } from './screens/AboutUs/aboutus'
-import Home from './screens/Home/home';
-import { LandingPage } from './screens/LandingPage/landing-page'
-import { SignUp } from './screens/Auth/Sign-up'
-import { Login } from './screens/Auth/Login'
+import { Header } from './screens/Header/Header';  // Header.tsx
+import { Footer } from './screens/Footer/footer';   // footer.tsx
+import { AboutUs } from './screens/AboutUs/aboutus'; // aboutus.tsx
+import Home from './screens/Home/home';            // home.tsx
+import { LandingPage } from './screens/LandingPage/landing-page'; // landing-page.tsx
+import { SignUp } from './screens/Auth/Sign-up';   // Sign-up.tsx
+import { Login } from './screens/Auth/Login';      // Login.tsx
+
 
 function App() {
 
