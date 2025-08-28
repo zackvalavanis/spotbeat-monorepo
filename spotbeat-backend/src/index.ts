@@ -1,7 +1,7 @@
 import express, { type Request, type Response } from 'express';
 import cors from 'cors'
-import eventRoutes from './routes/eventRoutes';
-import authRoutes from './routes/authRoutes';
+import eventRoutes from './routes/eventRoutes.js';
+import authRoutes from './routes/authRoutes.js';
 
 
 const app = express();
