@@ -7,6 +7,7 @@
     "dev": "nodemon --watch \"src/**/*.ts\" --ext ts,js --exec \"node --loader ts-node/esm src/index.ts\"",
     "build": "tsc",
     "start": "node dist/index.js",
+    "heroku-postbuild": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
