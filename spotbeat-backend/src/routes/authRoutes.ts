@@ -1,15 +1,19 @@
-import express from "express";
+import express, { Router } from "express";
 import { authenticateUser } from "../middlewares/auth.ts";
 import { supabase } from "../utils/supabase.ts";
 
-const router = express.Router();
+const router: Router = Router();
 
-router.get('/me', authenticateUser, async (req, res) => {
+interface AuthenticatedRequest extends express.Request {
+  user?: any; // refine if you have a User type
+}
+
+router.get('/me', authenticateUser, async (req: AuthenticatedRequest, res) => {
   try {
-    const { user } = req as any; // already attached by middleware
+    const user = req.user;
     if (!user) return res.status(401).json({ error: 'User not authenticated' });
 
-    res.json(user); // just return the user object
+    res.json(user);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Internal server error' });
@@ -31,7 +35,6 @@ router.post('/login', async (req, res) => {
 
     const { user, session } = data;
 
-    // Return user info + access token
     res.json({ user, access_token: session.access_token });
   } catch (err) {
     console.error(err);
