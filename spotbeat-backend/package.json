@@ -1,10 +1,12 @@
 {
   "name": "spotbeat-backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Backend for SpotBeat",
+  "main": "dist/index.js",
   "scripts": {
     "dev": "nodemon --watch \"src/**/*.ts\" --ext ts,js --exec \"node --loader ts-node/esm src/index.ts\"",
+    "build": "tsc",
+    "start": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
