@@ -25,6 +25,7 @@ export default function Home() {
     try {
       const res = await fetch(`http://localhost:8000/api/getEvents?city=${encodeURIComponent(city)}`)
       const events = await res.json()
+      console.log(events)
       navigate('/events', { state: { events } })
     } catch (error) {
       console.error(error)
