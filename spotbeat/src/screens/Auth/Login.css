@@ -1,14 +1,31 @@
 .login-page {
-  flex: 1;
-  min-height: 80vh;
   display: flex;
-  justify-content: center;
   flex-direction: column;
   align-items: center;
-  gap: 5rem;
-  /* reduced from 200px for better spacing */
-  padding: 4rem 2rem;
-  /* add breathing room on top/bottom and sides */
-  background-color: #f9f9f9;
-  /* light neutral background for professional look */
+  /* centers horizontally */
+  justify-content: center;
+  /* centers vertically if you set height */
+  min-height: 100vh;
+  /* optional: full page vertical centering */
+}
+
+.login-page input {
+  display: block;
+  width: 300px;
+  padding: 0.75rem 1rem;
+  /* same left & right padding for all */
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: white;
+  box-sizing: border-box;
+  /* includes padding in width */
+  margin-bottom: 1rem;
+  /* even spacing */
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

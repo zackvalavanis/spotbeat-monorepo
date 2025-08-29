@@ -7,7 +7,7 @@ import { Modal } from '../../components/Modal/Modal'
 
 export function Header() {
   const navigate = useNavigate()
-  // const [location, setLocation] = useState('')
+  const location = 'Chicago'
   const [modalVisible, setModalVisible] = useState(false)
 
 
@@ -33,7 +33,7 @@ export function Header() {
       </div>
 
       <div className='location-modal-button-container'>
-        <button onClick={handleOpenModal} className='button-open-location-modal'>Location
+        <button onClick={handleOpenModal} className='button-open-location-modal'>{location}
         </button>
       </div>
 

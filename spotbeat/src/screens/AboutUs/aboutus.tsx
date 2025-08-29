@@ -33,8 +33,11 @@ export function AboutUs() {
         <p>
           SpotBeat finds tickets before they sell out and notifies you instantly. Your front-row experience starts here.
         </p>
+
         <button
-          onClick={() => navigate('/home')}
+          onClick={() => {
+            navigate(user ? '/home' : '/login')
+          }}
         >
           Get Started
         </button>

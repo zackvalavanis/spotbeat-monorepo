@@ -63,8 +63,8 @@ export function Login() {
 
   return (
     <div className='login-page'>
-      <form onSubmit={handleLogin}>
 
+      <form onSubmit={handleLogin}>
         <div>
           <label>Email:</label>
           <input name='email' type="email" ></input>
@@ -75,13 +75,18 @@ export function Login() {
           <input name='password' type="password"></input>
         </div>
 
-        <div>
+        <div className='button-container'>
           <button
+
             type='submit'
           >Login
           </button>
         </div>
       </form>
+
+      <div>
+        <h1>Other ways to sign in</h1>
+      </div>
 
       <div>
         <div>
