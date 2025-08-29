@@ -2,6 +2,7 @@ import express, { type Request, type Response } from 'express';
 import cors from 'cors'
 import eventRoutes from './routes/eventRoutes.js';
 import authRoutes from './routes/authRoutes.js';
+import process from 'process';
 
 
 const app = express();
