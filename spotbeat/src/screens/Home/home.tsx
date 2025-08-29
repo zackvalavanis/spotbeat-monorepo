@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react"
 import './home.css'
+import { useNavigate } from "react-router-dom"
 
 
 
 export default function Home() {
   const [city, setCity] = useState<string>('')
   const [visible, setVisible] = useState(false) // for fade-in
+  const navigate = useNavigate()
 
 
 
@@ -22,8 +24,8 @@ export default function Home() {
 
     try {
       const res = await fetch(`http://localhost:8000/api/getEvents?city=${encodeURIComponent(city)}`)
-      const songs = await res.json()
-      console.log(songs)
+      const events = await res.json()
+      navigate('/events', { state: { events } })
     } catch (error) {
       console.error(error)
     }
