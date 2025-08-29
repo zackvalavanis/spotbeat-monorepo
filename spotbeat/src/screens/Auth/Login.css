@@ -28,4 +28,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+}
+
+.login-button {
+  color: white;
+  background-color: #2563eb;
+}
+
+.login-button:hover {
+  background-color: #9333EA;
+  transform: scale(1.05);
 }

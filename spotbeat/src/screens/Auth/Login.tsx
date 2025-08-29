@@ -58,6 +58,24 @@ export function Login() {
     console.log('Updated user:', user);
   }, [user]);
 
+  const handleGoogleAuth = async () => {
+    setLoading(true)
+    setErrorMessage('')
+
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: window.location.origin
+      },
+    });
+
+    setLoading(false)
+    if (error) {
+      setErrorMessage(error.message)
+      return
+    }
+  }
+
 
 
 
@@ -77,7 +95,7 @@ export function Login() {
 
         <div className='button-container'>
           <button
-
+            className='login-button'
             type='submit'
           >Login
           </button>
@@ -90,11 +108,7 @@ export function Login() {
 
       <div>
         <div>
-          <h1>Google Auth</h1>
-        </div>
-
-        <div>
-          <h1>Apple Auth</h1>
+          <button onClick={handleGoogleAuth} className='google-auth-button'>Sign in with Google</button>
         </div>
       </div>
     </div>
