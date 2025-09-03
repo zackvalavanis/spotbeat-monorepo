@@ -1,0 +1,59 @@
+/* Events page container with fade-in effect */
+.events-page {
+  flex: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  padding: 20px;
+  /* add some padding for smaller screens */
+}
+
+.events-page.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Grid layout: 3 items per row with spacing */
+.events-grid {
+  display: grid;
+  gap: 100px;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 20px;
+  width: 100%;
+  max-width: 1200px;
+  /* center grid on large screens */
+}
+
+.event-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.event-items:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+
+/* Responsive: 2 columns on medium screens */
+@media (max-width: 900px) {
+  .events-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+}
+
+/* Responsive: 1 column on small screens */
+@media (max-width: 600px) {
+  .events-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}

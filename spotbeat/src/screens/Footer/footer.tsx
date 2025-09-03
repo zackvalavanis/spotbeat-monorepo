@@ -7,6 +7,7 @@ import type { User } from '@supabase/supabase-js';
 export function Footer() {
   const navigate = useNavigate()
   const [user, setUser] = useState<User | null>(null);
+  // const location = useLocation();
 
 
   useEffect(() => {
@@ -53,6 +54,7 @@ export function Footer() {
         </div>
 
         <div className='about-us-button-container mt-4'>
+          { }
           <span
             className='sign-up-button cursor-pointer'
             onClick={() => navigate('/aboutus')}

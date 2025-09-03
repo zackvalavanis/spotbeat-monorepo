@@ -2,13 +2,15 @@ import './Header.css'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { Modal } from '../../components/Modal/Modal'
-
+import { useLocationCity } from '../../components/Location/location'
 
 
 export function Header() {
   const navigate = useNavigate()
-  const location = 'Chicago'
   const [modalVisible, setModalVisible] = useState(false)
+  const Location = useLocationCity()
+
+
 
 
   const handleOpenModal = () => {
@@ -20,7 +22,7 @@ export function Header() {
   return (
     <div className="header-container">
       <div className="header-image-container">
-        <img src="/logo.png" alt="SpotBeat Logo" />
+        <img src="/logo.png" alt="SpotBeat Logo" onClick={() => navigate('/home')} />
       </div>
 
       <div className="header-title-container">
@@ -33,15 +35,16 @@ export function Header() {
       </div>
 
       <div className='location-modal-button-container'>
-        <button onClick={handleOpenModal} className='button-open-location-modal'>{location}
+        <button onClick={handleOpenModal} className='button-open-location-modal'>
+          Location: {Location ? Location : 'unknown'}
         </button>
       </div>
 
       <Modal
         show={modalVisible}
-        onClose={() => setModalVisible(false)}
-      />
-
+        onClose={() => setModalVisible(false)}>
+        Location: {Location ? Location : 'unknown'}
+      </Modal>
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import './home.css'
 import { useNavigate } from "react-router-dom"
+import { useLocationCity } from "../../components/Location/location"
 
 
 
@@ -8,6 +9,7 @@ export default function Home() {
   const [city, setCity] = useState<string>('')
   const [visible, setVisible] = useState(false) // for fade-in
   const navigate = useNavigate()
+  const location = useLocationCity()
 
 
 
@@ -26,7 +28,7 @@ export default function Home() {
       const res = await fetch(`http://localhost:8000/api/getEvents?city=${encodeURIComponent(city)}`)
       const events = await res.json()
       console.log(events)
-      navigate('/events', { state: { events } })
+      navigate('/events', { state: { events, city } })
     } catch (error) {
       console.error(error)
     }
@@ -38,7 +40,7 @@ export default function Home() {
         <input
           className="input-home-page"
           style={{ height: '60px', width: '50rem', borderRadius: '20px', backgroundColor: 'white', color: 'black' }}
-          placeholder="Search for events in your city"
+          placeholder={location ? `Search for events in ${location}` : `Search for events in your city`}
           value={city}
           name='city'
           onChange={(e) => setCity(e.target.value)} />
