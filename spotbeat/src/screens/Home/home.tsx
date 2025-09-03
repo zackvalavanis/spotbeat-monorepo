@@ -5,6 +5,7 @@ import { useLocationCity } from "../../components/Location/location"
 
 
 
+
 export default function Home() {
   const [city, setCity] = useState<string>('')
   const [visible, setVisible] = useState(false) // for fade-in
@@ -13,7 +14,6 @@ export default function Home() {
 
 
 
-  // Fade in on mount
   useEffect(() => {
     const timer = setTimeout(() => setVisible(true), 50) // trigger fade in
     return () => clearTimeout(timer)

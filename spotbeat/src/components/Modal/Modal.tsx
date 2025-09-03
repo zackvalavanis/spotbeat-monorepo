@@ -1,32 +1,61 @@
-import './Modal.css'
-import React from 'react';
+import './Modal.css';
+import React, { useState, useEffect } from 'react';
+import type { ReactNode } from 'react';
+import { useCity } from '../Context/use-city';
 
 interface ModalProps {
   show: boolean;
   onClose?: () => void;
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
 export const Modal: React.FC<ModalProps> = ({ show, onClose }) => {
-  const location = 'Chicago'
-  if (!show) return null; // don't render if not shown
+  const { city, setCity } = useCity();
+  const [selectedCity, setSelectedCity] = useState(city);
 
+  // reset input when modal opens
+  useEffect(() => {
+    if (show) setSelectedCity(city);
+  }, [show, city]);
+
+  if (!show) return null;
+
+  const handleSave = () => {
+    setCity(selectedCity); // update global city
+    onClose?.();
+  };
 
   return (
-    <div className="modal-backdrop" onClick={onClose}>
+    <div className="modal-backdrop">
       <section className="information-section">
         {[
           { title: 'Fast Alerts', desc: 'Get notified instantly when tickets go on sale.' },
           { title: 'Secure Checkout', desc: 'Buy safely without missing your favorite shows.' },
           { title: 'Track Events', desc: 'Follow artists and venues to never miss a beat.' }
         ].map((feature) => (
-          <div key={feature.title} className="">
-            <h3 className="">{feature.title}</h3>
-            <p className="">{feature.desc}</p>
+          <div key={feature.title}>
+            <h3>{feature.title}</h3>
+            <p>{feature.desc}</p>
           </div>
         ))}
+
+        <div className='right-location-section'>
+          <input
+            type="text"
+            value={selectedCity}
+            onChange={(e) => setSelectedCity(e.target.value)}
+            placeholder="Enter your city"
+            className="location-input"
+          />
+          <button
+            onClick={handleSave}
+            style={{ marginTop: '10px', padding: '10px 20px', borderRadius: '5px', cursor: 'pointer' }}
+          >
+            Save
+          </button>
+        </div>
+
         <button className="modal-close-button" onClick={onClose}>×</button>
-        <h1>{location}</h1>
       </section>
     </div>
   );

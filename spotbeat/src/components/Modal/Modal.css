@@ -12,12 +12,20 @@
 }
 
 .modal-content {
+  display: flex;
   background: white;
   padding: 2rem;
   border-radius: 12px;
   width: 20rem;
   height: 20rem;
   position: relative;
+}
+
+.information-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .modal-close-button {
@@ -40,6 +48,10 @@
 .modal-backdrop {
   opacity: 0;
   animation: fadeIn 0.2s forwards;
+}
+
+.right-location-section {
+  display: flex;
 }
 
 @keyframes fadeIn {

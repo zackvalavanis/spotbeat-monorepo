@@ -3,15 +3,14 @@ import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { Modal } from '../../components/Modal/Modal'
 import { useLocationCity } from '../../components/Location/location'
+import { useLocation } from "react-router-dom"
 
 
 export function Header() {
   const navigate = useNavigate()
   const [modalVisible, setModalVisible] = useState(false)
   const Location = useLocationCity()
-
-
-
+  const nav = useLocation()
 
   const handleOpenModal = () => {
     console.log('openingModal')
@@ -26,12 +25,21 @@ export function Header() {
       </div>
 
       <div className="header-title-container">
-        <button
-          onClick={() => navigate('/')}
-          style={{ backgroundColor: '#fcfcfc', border: 'none', outline: 'none', cursor: 'pointer' }}
-        >
-          <h1>SpotBeat</h1>
-        </button>
+        {nav.pathname === '/aboutus' ? (
+          <button
+            onClick={() => navigate('/')}
+            style={{ backgroundColor: '#fcfcfc', border: 'none', outline: 'none', cursor: 'pointer' }}
+          >
+            <h1>SpotBeat</h1>
+          </button>
+        ) : (
+          <button
+            onClick={() => navigate('/')}
+            style={{ backgroundColor: '#fcfcfc', border: 'none', outline: 'none', cursor: 'pointer' }}
+          >
+            <h1>SpotBeat</h1>
+          </button>
+        )}
       </div>
 
       <div className='location-modal-button-container'>

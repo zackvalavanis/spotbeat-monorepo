@@ -1,15 +1,12 @@
 // src/components/Location/useLocationCity.ts
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useCity } from '../Context/use-city';
 
 export function useLocationCity() {
-  const [city, setCity] = useState<string>(''); // default empty
-  const [error, setError] = useState<string | null>(null);
+  const { city, setCity } = useCity();
 
   useEffect(() => {
-    if (!navigator.geolocation) {
-      setError('Geolocation not supported');
-      return;
-    }
+    if (!navigator.geolocation) return;
 
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -17,16 +14,18 @@ export function useLocationCity() {
         fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`)
           .then(res => res.json())
           .then(data => {
-            if (data.address?.city) setCity(data.address.city);
-            else if (data.address?.town) setCity(data.address.town);
-            else if (data.address?.village) setCity(data.address.village);
-            else setError('City not found');
+            const newCity =
+              data.address?.city ||
+              data.address?.town ||
+              data.address?.village ||
+              'Chicago';
+            setCity(newCity); // update global city
           })
-          .catch(() => setError('Failed to fetch location data'));
+          .catch(() => setCity('Chicago'));
       },
-      () => setError('Geolocation permission denied or unavailable')
+      () => setCity('Chicago') // fallback if permission denied
     );
-  }, []);
+  }, [setCity]);
 
-  return city;
+  return city; // returns the global city
 }

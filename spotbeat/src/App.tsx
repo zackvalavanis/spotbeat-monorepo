@@ -8,6 +8,7 @@ import { LandingPage } from './screens/LandingPage/landing-page'; // landing-pag
 import { SignUp } from './screens/Auth/Sign-up';   // Sign-up.tsx
 import { Login } from './screens/Auth/Login';      // Login.tsx
 import { Events } from './screens/EventResults/events.tsx'; // events.tsx
+import { CityProvider } from './components/Context/city-provider.tsx';
 
 
 function App() {
@@ -53,7 +54,9 @@ function App() {
   ])
   return (
     <div>
-      <RouterProvider router={router} />
+      <CityProvider>
+        <RouterProvider router={router} />
+      </CityProvider>
     </div>
   )
 }
