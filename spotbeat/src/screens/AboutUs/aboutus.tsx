@@ -26,7 +26,7 @@ export function AboutUs() {
   return (
     <div className={`about-us-page ${visible ? 'visible' : ''}`}>
       <section className='top-about-us-section'>
-        {user && <p>Logged in: {user.email}</p>}
+        {user ? <p>Logged in: {user.email}</p> : <p>Not logged in</p>}
         <h2>
           Never Miss a Concert Again
         </h2>

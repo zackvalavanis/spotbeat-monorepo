@@ -11,38 +11,32 @@
   z-index: 2000;
 }
 
-.modal-content {
-  display: flex;
-  background: white;
-  padding: 2rem;
-  border-radius: 12px;
-  width: 20rem;
-  height: 20rem;
+.information-section-modal {
   position: relative;
-}
-
-.information-section {
+  /* add this */
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+  background-color: white;
+  width: 600px;
+  height: 200px;
+  padding: 20px;
+  border-radius: 20px;
 }
 
-.modal-close-button {
+.modal-close-button-modal {
   position: absolute;
   top: 10px;
-  /* distance from top of modal */
   right: 10px;
-  /* distance from right of modal */
   border: none;
   background: transparent;
   font-size: 1.5rem;
   font-weight: bold;
   cursor: pointer;
   color: #333;
-  /* make sure it’s visible */
   z-index: 1001;
-  /* above modal content */
 }
 
 .modal-backdrop {
@@ -52,6 +46,33 @@
 
 .right-location-section {
   display: flex;
+}
+
+.location-input {
+  display: flex;
+  background-color: white;
+  color: black;
+  border-radius: 20px;
+  height: 50px;
+  border: 1px solid grey;
+  align-items: center;
+}
+
+.button-save-location {
+  background-color: #2563eb;
+  color: white;
+  border-radius: 20px;
+  height: 50px;
+  width: 100px;
+  margin-left: 10px;
+  cursor: pointer;
+  border: none;
+  margin: 20px;
+}
+
+.button-save-location:hover {
+  background-color: #9333EA;
+  transform: scale(1.05);
 }
 
 @keyframes fadeIn {

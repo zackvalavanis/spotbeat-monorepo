@@ -27,36 +27,27 @@ export const Modal: React.FC<ModalProps> = ({ show, onClose }) => {
 
   return (
     <div className="modal-backdrop">
-      <section className="information-section">
-        {[
-          { title: 'Fast Alerts', desc: 'Get notified instantly when tickets go on sale.' },
-          { title: 'Secure Checkout', desc: 'Buy safely without missing your favorite shows.' },
-          { title: 'Track Events', desc: 'Follow artists and venues to never miss a beat.' }
-        ].map((feature) => (
-          <div key={feature.title}>
-            <h3>{feature.title}</h3>
-            <p>{feature.desc}</p>
-          </div>
-        ))}
-
-        <div className='right-location-section'>
-          <input
-            type="text"
-            value={selectedCity}
-            onChange={(e) => setSelectedCity(e.target.value)}
-            placeholder="Enter your city"
-            className="location-input"
-          />
-          <button
-            onClick={handleSave}
-            style={{ marginTop: '10px', padding: '10px 20px', borderRadius: '5px', cursor: 'pointer' }}
-          >
-            Save
-          </button>
-        </div>
-
-        <button className="modal-close-button" onClick={onClose}>×</button>
-      </section>
+      <div className='information-section-modal'>
+        <h1
+          style={{ marginBottom: '20px', fontSize: '24px' }}
+        >
+          Set your location
+        </h1>
+        <button className="modal-close-button-modal" onClick={onClose}>×</button>
+        <input
+          type="text"
+          value={selectedCity}
+          onChange={(e) => setSelectedCity(e.target.value)}
+          placeholder="Enter your city"
+          className="location-input"
+        />
+        <button
+          onClick={handleSave}
+          className='button-save-location'
+        >
+          Save
+        </button>
+      </div>
     </div>
   );
 };

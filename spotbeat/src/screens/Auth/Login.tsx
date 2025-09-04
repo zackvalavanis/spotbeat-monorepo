@@ -5,8 +5,6 @@ import { useNavigate } from 'react-router-dom'
 import type { User } from '@supabase/supabase-js';
 
 
-
-
 export function Login() {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
@@ -68,6 +66,7 @@ export function Login() {
         redirectTo: window.location.origin
       },
     });
+    alert('Redirecting to Google for authentication...')
 
     setLoading(false)
     if (error) {
@@ -103,14 +102,15 @@ export function Login() {
       </form>
 
       <div>
-        <h1>Other ways to sign in</h1>
+        <h1 style={{ fontSize: '20px', margin: '40px' }}>Other ways to sign in</h1>
       </div>
 
-      <div>
-        <div>
-          <button onClick={handleGoogleAuth} className='google-auth-button'>Sign in with Google</button>
-        </div>
-      </div>
+      <img
+        onClick={handleGoogleAuth}
+        src="/web_dark_rd_SI@3x.png"
+        alt="Google logo"
+        className="google-logo"
+      />
     </div>
   )
 }

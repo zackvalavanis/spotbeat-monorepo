@@ -40,3 +40,14 @@
   background-color: #9333EA;
   transform: scale(1.05);
 }
+
+.google-logo {
+  height: 42px;
+  width: 165px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.google-logo:hover {
+  transform: scale(1.05);
+}
