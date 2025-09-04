@@ -36,3 +36,19 @@ export const addLike = async (_req: Request, res: Response) => {
 
   res.status(201).json(data)
 }
+
+// Remove a like 
+
+export const removeLike = async (_req: Request, res: Response) => {
+  const { user_id, event_id } = _req.body;
+
+  if (!user_id || !event_id) {
+    return res.status(400).json({ error: 'user_id and event_id are required' });
+  }
+  const { data, error } = await supabase.from('likes').delete().eq('user_id', user_id).eq('event_id', event_id).select().single();
+
+  if (error) res.status(500).json({ error: error.message })
+
+  res.status(200).json(data)
+
+}
