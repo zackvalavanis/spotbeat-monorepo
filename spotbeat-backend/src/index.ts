@@ -3,6 +3,7 @@ import cors from 'cors'
 import eventRoutes from './routes/eventRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import process from 'process';
+import likesRoutes from './routes/likesRoutes.js';
 
 
 const app = express();
@@ -15,8 +16,10 @@ app.use(cors({
 
 app.use(express.json());
 
-app.use('/api/getEvents', eventRoutes);
+app.use('/api/events', eventRoutes);
 app.use('/api/auth', authRoutes)
+
+app.use('/api/likes', likesRoutes)
 
 app.get('/', (req: Request, res: Response) => {
   res.send('SpotBeat Backend is running!');
