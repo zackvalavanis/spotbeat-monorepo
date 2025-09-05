@@ -4,31 +4,41 @@ import { useNavigate } from "react-router-dom";
 import { useLocationCity } from "../../components/Location/location";
 
 export default function Home() {
-  const [city, setCity] = useState<string>('');
-  const [visible, setVisible] = useState(false); // for fade-in
+  const locationCity = useLocationCity();
   const navigate = useNavigate();
-  const locationCity = useLocationCity(); // rename to avoid confusion
+
+  // Combined search input
+  const [searchText, setSearchText] = useState<string>('');
+  const [startDate, setStartDate] = useState<string>('');
+  const [endDate, setEndDate] = useState<string>('');
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setVisible(true), 50);
     return () => clearTimeout(timer);
   }, []);
 
-  const handleIndex = async (e: React.FormEvent) => {
+  const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const queryCity = city || locationCity; // fallback to locationCity if city input is empty
 
-    if (!queryCity) {
-      console.warn("No city provided");
-      return;
-    }
+    const params: Record<string, string> = {};
+
+    // If user entered text, use it; otherwise fallback to locationCity
+    if (searchText) params.city = searchText;
+    else if (locationCity) params.city = locationCity;
+
+    if (startDate) params.startDateTime = startDate;
+    if (endDate) params.endDateTime = endDate;
+
+    const queryString = new URLSearchParams(params).toString();
 
     try {
-      const res = await fetch(`http://localhost:8000/api/events?city=${encodeURIComponent(queryCity)}`);
+      const res = await fetch(`http://localhost:8000/api/events?${queryString}`);
+      if (!res.ok) throw new Error('Failed to fetch events');
       const events = await res.json();
-      console.log(events);
-      navigate('/events', { state: { events, city: queryCity } });
+      navigate('/events', { state: { events, city: params.city || '', filters: params } });
+      console.log(res)
     } catch (error) {
       console.error(error);
     }
@@ -36,22 +46,24 @@ export default function Home() {
 
   return (
     <div className={`home-page-container ${visible ? 'show' : ''}`}>
-      <form onSubmit={handleIndex}>
+      <form onSubmit={handleSearch} className="search-form">
         <input
           className="input-home-page"
-          style={{ height: '60px', width: '50rem', borderRadius: '20px', backgroundColor: 'white', color: 'black' }}
-          placeholder={locationCity ? `Search for events in ${locationCity}` : `Search for events in your city`}
-          value={city}
-          name='city'
-          onChange={(e) => setCity(e.target.value)}
+          placeholder={locationCity ? `Search in ${locationCity}` : `Search for events`}
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
         />
-        <button
-          type='submit'
-          className='button-lookup'
-          style={{ borderRadius: '20px', marginLeft: '20px', width: '10rem', height: '60px' }}
-        >
-          Lookup
-        </button>
+        <input
+          type="date"
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
+        />
+        <input
+          type="date"
+          value={endDate}
+          onChange={(e) => setEndDate(e.target.value)}
+        />
+        <button type="submit" className="button-lookup">Lookup</button>
       </form>
     </div>
   );

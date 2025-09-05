@@ -1,0 +1,8 @@
+.event-show-page {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  flex-direction: column;
+  height: 60em;
+  margin-top: 20em;
+}

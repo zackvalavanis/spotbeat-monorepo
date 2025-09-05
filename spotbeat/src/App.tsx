@@ -9,6 +9,7 @@ import { SignUp } from './screens/Auth/Sign-up';   // Sign-up.tsx
 import { Login } from './screens/Auth/Login';      // Login.tsx
 import { Events } from './screens/EventResults/events.tsx'; // events.tsx
 import { CityProvider } from './components/Context/city-provider.tsx';
+import { EventsShow } from './screens/EventResults/show-event.tsx';
 
 
 function App() {
@@ -48,6 +49,10 @@ function App() {
         {
           path: '/events',
           element: <Events />
+        },
+        {
+          path: '/events/:id',
+          element: <EventsShow />
         }
       ]
     }

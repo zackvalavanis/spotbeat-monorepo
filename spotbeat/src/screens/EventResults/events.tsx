@@ -1,6 +1,6 @@
 import './events.css'
 import { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 interface EventImage {
   url: string | null
@@ -23,11 +23,12 @@ const ITEMS_PER_PAGE = 9 // 3 per row × 3 rows
 
 export function Events() {
   const location = useLocation()
-  const { city: initialCity, events: initialEvents } =
-    (location.state as { city: string; events: Event[] }) || {
-      city: '',
-      events: [],
-    }
+  const navigate = useNavigate()
+
+  const locationState = location.state as { city?: string; events?: Event[] } | undefined
+
+  const initialCity = locationState?.city || ''
+  const initialEvents = Array.isArray(locationState?.events) ? locationState.events : []
 
   const [visible, setVisible] = useState(false)
   const [page, setPage] = useState(1)
@@ -42,7 +43,9 @@ export function Events() {
 
   // pagination
   const startIndex = (page - 1) * ITEMS_PER_PAGE
-  const selectedEvents = eventsList.slice(startIndex, startIndex + ITEMS_PER_PAGE)
+  const selectedEvents = Array.isArray(eventsList)
+    ? eventsList.slice(startIndex, startIndex + ITEMS_PER_PAGE)
+    : []
   const totalPages = Math.ceil(eventsList.length / ITEMS_PER_PAGE)
 
   // search form handler
@@ -50,10 +53,11 @@ export function Events() {
     e.preventDefault()
     try {
       const res = await fetch(
-        `http://localhost:8000/api/getEvents?city=${encodeURIComponent(city)}`
+        `http://localhost:8000/api/events?city=${encodeURIComponent(city)}`
       )
       const data = await res.json()
-      setEventsList(data)
+      setEventsList(Array.isArray(data) ? data : [])
+      console.log(data)
       setPage(1) // reset pagination
     } catch (error) {
       console.error(error)
@@ -92,15 +96,15 @@ export function Events() {
         </button>
       </form>
 
-      {/* Header */}
-      <h2 style={{ fontSize: '32px', marginBottom: '20px' }}>Events near {city}</h2>
-
       {/* Grid */}
       <div className="events-grid">
         {selectedEvents.length > 0 ? (
           selectedEvents.map((event) => (
-            <div className="event-items" key={event.id}>
-              {/* Image */}
+            <div
+              onClick={() => navigate(`/events/${event.id}`, { state: { event } })}
+              className="event-items"
+              key={event.id}
+            >
               {event.images?.length && event.images[0].url ? (
                 <img
                   style={{ height: '300px', width: '300px', objectFit: 'cover', borderRadius: '8px' }}
@@ -123,7 +127,6 @@ export function Events() {
                 </div>
               )}
 
-              {/* Event Info */}
               <div>
                 <h1
                   style={{
