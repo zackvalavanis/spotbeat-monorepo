@@ -18,8 +18,8 @@ app.use(express.json());
 
 app.use('/api/events', eventRoutes);
 app.use('/api/auth', authRoutes)
-
 app.use('/api/likes', likesRoutes)
+
 
 app.get('/', (req: Request, res: Response) => {
   res.send('SpotBeat Backend is running!');
