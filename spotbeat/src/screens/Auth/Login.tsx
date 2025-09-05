@@ -54,6 +54,7 @@ export function Login() {
 
   useEffect(() => {
     console.log('Updated user:', user);
+    console.log('userId', localStorage.getItem('userId'))
   }, [user]);
 
   const handleGoogleAuth = async () => {
@@ -74,8 +75,6 @@ export function Login() {
       return
     }
   }
-
-
 
 
   return (

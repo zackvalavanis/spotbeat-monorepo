@@ -1,6 +1,12 @@
 import { type Request, type Response } from 'express';
 import fetch from 'node-fetch';
 import dotenv from "dotenv";
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseUrl = process.env.SUPABASE_URL!;
+const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY!; // use the service role key
+const supabase = createClient(supabaseUrl, supabaseKey);
+
 dotenv.config();
 
 const TICKETMASTER_API_KEY = process.env.TICKETMASTER_API_KEY;
@@ -78,3 +84,38 @@ export const getEventById = async (req: Request, res: Response): Promise<void> =
     res.status(500).json({ message: 'Internal server error' });
   }
 };
+
+export const likeEvent = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { id } = req.params; // Ticketmaster event ID
+    const profileId = req.body.userId; // UUID from your frontend login
+
+    if (!id || !profileId) {
+      res.status(400).json({ message: "Event ID and user ID are required" });
+      return;
+    }
+
+    // Insert like into Supabase table
+    const { data, error } = await supabase
+      .from('likes')   // your table name
+      .insert({ event_id: id, profile_id: profileId })
+      .select(); // optional, returns inserted row
+
+    if (error) {
+      console.error("Supabase error:", error);
+      res.status(500).json({ message: "Failed to like event", details: error.message });
+      return;
+    }
+
+    res.status(201).json({
+      success: true,
+      message: `Event ${id} liked successfully`,
+      like: data?.[0] // return inserted row
+    });
+
+  } catch (error) {
+    console.error("Error liking event:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+

@@ -49,20 +49,31 @@ export default function Home() {
       <form onSubmit={handleSearch} className="search-form">
         <input
           className="input-home-page"
-          placeholder={locationCity ? `Search in ${locationCity}` : `Search for events`}
+          placeholder='Search by city, keyword'
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
-        <input
-          type="date"
-          value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
-        />
-        <input
-          type="date"
-          value={endDate}
-          onChange={(e) => setEndDate(e.target.value)}
-        />
+
+        <div className='date-container'>
+          <input
+            className='date-input'
+            type="date"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+            onClick={(e) => (e.target as HTMLInputElement).showPicker?.()}
+          />
+        </div>
+
+        <div className='date-container'>
+          <input
+            className='date-input'
+            type="date"
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
+            onClick={(e) => (e.target as HTMLInputElement).showPicker?.()}
+          />
+        </div>
+
         <button type="submit" className="button-lookup">Lookup</button>
       </form>
     </div>
